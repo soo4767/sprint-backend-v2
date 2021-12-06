@@ -12,7 +12,7 @@ class CreateTeam(BaseModel):
 
 
 class UpdateTeam(BaseModel):
-    team_id: int
+    id: int
     team_name: Optional[str]
 
 
@@ -23,7 +23,7 @@ class CreateTeamAddUser(BaseModel):
 
 class InviteTeam(BaseModel):
     user_id: int
-    team_id: int
+    id: int
 
 
 class ShowTeam(BaseModel):

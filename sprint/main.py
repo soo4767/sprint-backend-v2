@@ -8,6 +8,9 @@ from sprint.team import model as team_model
 from sprint.user import model as user_model
 from sprint.routers import user as user_router
 from sprint.routers import team as team_router
+from sprint.routers import board as board_router
+from sprint.routers import category as category_router
+from sprint.routers import comment as comment_router
 
 app = FastAPI()
 
@@ -24,7 +27,9 @@ for model in models:
 
 app.include_router(user_router.router)
 app.include_router(team_router.router)
-
+app.include_router(board_router.router)
+app.include_router(category_router.router)
+app.include_router(comment_router.router)
 import uvicorn
 from pathlib import Path
 import os
@@ -33,4 +38,4 @@ import sys
 if __name__ == "__main__":
     path = Path(os.path.realpath(__file__)).parent.parent.absolute()
     sys.path.append(str(path))
-    uvicorn.run("spint.main:app", host="0.0.0.0", reload=True, port=8000)
+    uvicorn.run("sprint.main:app", host="0.0.0.0", reload=True, port=8000)

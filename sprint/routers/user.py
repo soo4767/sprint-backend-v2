@@ -18,16 +18,16 @@ def create(request: user_schema.CreateUser, db: Session = Depends(get_db)):
 
 @router.put('')
 def update(request: user_schema.UpdateUser, db: Session = Depends(get_db)):
-    return service_user.update(db=db, obj_in=request, db_obj=service_user.get(db=db, id=request.user_id))
+    return service_user.update(db=db, obj_in=request, db_obj=service_user.get(db=db, id=request.id))
 
 
 @router.get('/list')
-def get(page: Optional[int] = 0, count: Optional[int] = None, db: Session = Depends(get_db)):
+def get_list(page: Optional[int] = 0, count: Optional[int] = None, db: Session = Depends(get_db)):
     return service_user.get_multi(db=db, skip=page, limit=count)
 
 
 @router.get('/{user_id}')
-def get_list(user_id: int, db: Session = Depends(get_db)):
+def get(user_id: int, db: Session = Depends(get_db)):
     return service_user.get(db=db, id=user_id)
 
 

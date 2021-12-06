@@ -3,7 +3,7 @@ from typing import Optional
 
 
 class User(BaseModel):
-    user_id: int
+    id: int
     username: str
     password: str
 
@@ -14,7 +14,7 @@ class CreateUser(BaseModel):
 
 
 class UpdateUser(BaseModel):
-    user_id: int
+    id: int
     username: Optional[str]
     password: Optional[str]
 

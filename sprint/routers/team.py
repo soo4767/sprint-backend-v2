@@ -18,7 +18,7 @@ def create(request: team_schema.CreateTeamAddUser, db: Session = Depends(get_db)
 
 @router.put('')
 def update(request: team_schema.UpdateTeam, db: Session = Depends(get_db)):
-    return service_team.update(db=db, obj_in=request, db_obj=service_team.get(db=db, id=request.team_id))
+    return service_team.update(db=db, obj_in=request, db_obj=service_team.get(db=db, id=request.id))
 
 
 @router.post('/invite', response_model=team_schema.ShowTeam)
@@ -27,12 +27,12 @@ def invite(request: team_schema.InviteTeam, db: Session = Depends(get_db)):
 
 
 @router.get('/list')
-def get(page: Optional[int] = 0, count: Optional[int] = None, db: Session = Depends(get_db)):
+def get_list(page: Optional[int] = 0, count: Optional[int] = None, db: Session = Depends(get_db)):
     return service_team.get_multi(db=db, skip=page, limit=count)
 
 
 @router.get('/{team_id}', response_model=team_schema.ShowTeam)
-def get_list(team_id: int, db: Session = Depends(get_db)):
+def get(team_id: int, db: Session = Depends(get_db)):
     return service_team.get(db=db, id=team_id)
 
 

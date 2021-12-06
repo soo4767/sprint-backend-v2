@@ -3,7 +3,7 @@ from typing import Optional
 
 
 class Comment(BaseModel):
-    comment_id: int
+    id: int
     content: str
     board_id: int
     user_id: int
@@ -16,5 +16,5 @@ class CreateComment(BaseModel):
 
 
 class UpdateComment(BaseModel):
-    comment_id: int
+    id: int
     content: Optional[str]

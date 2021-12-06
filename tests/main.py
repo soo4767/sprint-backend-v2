@@ -74,17 +74,18 @@ def run_test_by_folder_name(folder_name: str, test_name: str, module_strings):
 
 def service_test():
     # Crud Test module 이름들을 생성 순서에 맞게 작성합니다
-    module_strings = ['auth',
+    module_strings = ['user', 'team', 'board'
                       ]
 
     run_test_by_folder_name('service', 'CRUD', module_strings)
 
 
 def api_test():
+    pass
     # API Test module 이름들을 생성 순서에 맞게 작성합니다
-    module_strings = ['auth',
-                      ]
-    run_test_by_folder_name('api', 'API', module_strings)
+    # module_strings = ['auth',
+    #                   ]
+    # run_test_by_folder_name('api', 'API', module_strings)
 
 
 def init_dummy_data():

@@ -1,14 +1,18 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List, Dict
+from sprint.category.schema import CategoryWithValue
 
 
 class Board(BaseModel):
-    board_id: int
+    id: int
     board_status: str
     board_content: str
     user_id: int
     team_id: int
     parent_id: int
+
+    class Config:
+        orm_mode = True
 
 
 class CreateBoard(BaseModel):
@@ -20,7 +24,59 @@ class CreateBoard(BaseModel):
 
 
 class UpdateBoard(BaseModel):
-    board_id: int
-    board_status: str
+    id: int
+    board_status: Optional[str]
+    board_content: Optional[str]
+    parent_id: Optional[int]
+    category_list: Optional[List[CategoryWithValue]] = []
+
+
+class ShowBoard(BaseModel):
+    id: int
+    board_status: Optional[str]
     board_content: str
-    parent_id: int
+    user_id: int
+    team_id: int
+    parent_id: Optional[int]
+
+    class Config:
+        orm_mode = True
+
+
+class ShowBoardWithParent(BaseModel):
+    id: Optional[int]
+    board_status: str = None
+    board_content: str = None
+    user_id: Optional[int]
+    team_id: Optional[int]
+    parent_id: Optional[int]
+
+    category_list: list = []
+    comment_list: list = []
+    parent: Board = None
+
+    class Config:
+        orm_mode = True
+
+
+class ShowBoardWithChildren(BaseModel):
+    id: Optional[int]
+    board_status: str = None
+    board_content: str = None
+    user_id: Optional[int]
+    team_id: Optional[int]
+    parent_id: Optional[int]
+
+    category_list: Optional[List[CategoryWithValue]] = []
+    total_category_list: Optional[List[CategoryWithValue]] = []
+    comment_list: list = []
+    child_list: list = []
+
+    class Config:
+        orm_mode = True
+
+
+class UpdateBoardCategoryValue(BaseModel):
+    board_id: int
+    category_id: int
+    value: str
