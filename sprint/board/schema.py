@@ -68,12 +68,16 @@ class ShowBoardWithChildren(BaseModel):
     parent_id: Optional[int]
 
     category_list: Optional[List[CategoryWithValue]] = []
-    total_category_list: Optional[List[CategoryWithValue]] = []
     comment_list: list = []
-    child_list: list = []
+    child_list: Optional[List["ShowBoardWithChildren"]]
 
     class Config:
         orm_mode = True
+
+
+# Self-Referencing Models :
+# https://pydantic-docs.helpmanual.io/usage/postponed_annotations/#:~:text=Self%2Dreferencing%20Models-,%F0%9F%94%97,-Data%20structures%20with
+ShowBoardWithChildren.update_forward_refs()
 
 
 class UpdateBoardCategoryValue(BaseModel):

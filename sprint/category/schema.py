@@ -21,7 +21,7 @@ class UpdateCategory(BaseModel):
 
 
 class CategoryWithValue(BaseModel):
-    id: int
+    id: Optional[int]
     category_name: Optional[str]
     value: Optional[str]
 

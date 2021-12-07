@@ -6,7 +6,7 @@ from sprint.user.service import service_user
 from sprint.team.schema import CreateTeam, UpdateTeam, CreateTeamAddUser, InviteTeam
 
 
-class Order_01_Service_Team(BaseTest):
+class Order_02_Service_Team(BaseTest):
     def setUp(self):
         self.user_list = service_user.get_multi(db=self.db)
         self.create_team = CreateTeamAddUser(

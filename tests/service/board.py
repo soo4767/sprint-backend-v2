@@ -7,7 +7,7 @@ from sprint.user.service import service_user
 from sprint.team.service import service_team
 
 
-class Order_02_Service_Board(BaseTest):
+class Order_03_Service_Board(BaseTest):
     def setUp(self):
         self.user_list = service_user.get_multi(db=self.db)
         self.team_list = service_team.get_multi(db=self.db)
@@ -63,6 +63,7 @@ class Order_02_Service_Board(BaseTest):
                 ),
             ]
         )
+        
         updated_board = service_board.update(db=self.db, obj_in=updating_board, db_obj=board)
         category_id_list = []
         for category in updated_board.category_list:
@@ -70,4 +71,14 @@ class Order_02_Service_Board(BaseTest):
 
         self.assertIn(add_category.id, category_id_list, msg="test_05_add_catagory_to_board id Error")
 
-# TODO
+    def test_06_update_catagory_to_board(self):
+        pass
+
+    def test_07_delete_catagory_to_board(self):
+        pass
+
+    def test_08_remove_board(self):
+        board = self.board_list[-1]
+        service_board.remove(db=self.db, id=board.id)
+        deleted_board = service_board.get(db=self.db, id=board.id)
+        self.assertIsNone(deleted_board, msg="test_08_remove_board Error")

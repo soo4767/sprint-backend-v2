@@ -21,16 +21,6 @@ def update(request: category_schema.UpdateCategory, db: Session = Depends(get_db
     return service_category.update(db=db, obj_in=request, db_obj=service_category.get(db=db, id=request.id))
 
 
-@router.get('/list')
-def get_list(page: Optional[int] = 0, count: Optional[int] = None, db: Session = Depends(get_db)):
-    return service_category.get_multi(db=db, skip=page, limit=count)
-
-
-@router.get('/{user_id}')
-def get(user_id: int, db: Session = Depends(get_db)):
-    return service_category.get(db=db, id=user_id)
-
-
-@router.delete('/{user_id}')
-def delete(user_id: int, db: Session = Depends(get_db)):
-    return service_category.remove(db=db, id=user_id)
+@router.delete('/{category_id}')
+def delete(category_id: int, db: Session = Depends(get_db)):
+    return service_category.remove(db=db, id=category_id)
